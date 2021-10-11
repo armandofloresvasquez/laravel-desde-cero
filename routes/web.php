@@ -17,33 +17,19 @@ Route::get('/', function () {
     return view('welcome');
 })->name('main');
 
-Route::get('products', function () {
-    return 'This is the list of Products';
-})->name('products.index');
+Route::get('products', 'ProductController@index')->name('products.index');
 
-Route::get('products/create', function () {
-    return 'This is the form to create a Products';
-})->name('products.create');
+Route::get('products/create', 'ProductController@index')->name('products.create');
 
-Route::post('products', function () {
-    //return 'This is the list of Products';
-})->name('products.store');
+Route::post('products', 'ProductController@store')->name('products.store');
 
-Route::get('products/{products}', function ($product) {
-    return "Showing products with id {$product}";
-})->name('products.show');
+Route::get('products/{products}', 'ProductController@show')->name('products.show');
 
-Route::get('products/{products}/edit', function ($product) {
-    return "Showing the form to edit products with id {$product}";
-})->name('products.edit');
+Route::get('products/{products}/edit','ProductController@edit')->name('products.edit');
 
-Route::match(['put','patch'],'products/{products}', function ($product) {
-    //
-})->name('products.update');
+Route::match(['put','patch'],'products/{products}', 'ProductController@update')->name('products.update');
 
-Route::delete('products/{products}', function ($product) {
-    //
-})->name('products.destroy');
+Route::delete('products/{products}', 'ProductController@destroy')->name('products.destroy');
 
 
 
