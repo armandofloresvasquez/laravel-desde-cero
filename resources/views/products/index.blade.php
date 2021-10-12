@@ -1,50 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="Description" content="Enter your description here"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<title>Title</title>
-</head>
-<body>
+
+@extends('layouts.master')
+@section('content')
     <div class="container">
-    <h1 class="display-3">Pagina de productos</h1>
+    <h1 class="display-3">Products page</h1>
+    @empty ($products)
+        <div class="alert alert-warning">
+            Esta lista esta vacía
+        </div>
+    @else
         <div class="row">
             <div class="table-responnsive">
-                <table class="table table-striped">
+                <table class="table table-sm table-bordered">
                     <thead class="thead-light">
                         <tr>
                             <th>#</th>
-                            <th>Titulo</th>
-                            <th>Descripción</th>
-                            <th>Acción</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($products as $product)
                         <tr>
-                            <td>1</td>
-                            <td>Crema</td>
-                            <td>Hidratante</td>
-                            <td>Editar</td>
+                            <td>{{$product->id}}</td>
+                            <td>{{$product->title}}</td>
+                            <td>{{$product->description}}</td>
+                            <td>{{$product->price}}</td>
+                            <td>{{$product->stock}}</td>
+                            <td>{{$product->status}}</td>
+                            
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Soap</td>
-                            <td>The best</td>
-                            <td>Editar</td>
-                        </tr>
+                        @endforeach
                     </tbody>
 
                 </table>
             </div>
         </div>
+        @endempty
     </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+@endsection

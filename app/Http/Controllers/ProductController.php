@@ -9,11 +9,13 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        //$products = Product::all();
         //$products = DB::table('products')->get();
         //return $products;
         //dd($products);
-        return view('products.index');
+        return view('products.index')->with([
+            'products'=>Product::all(),
+        ]);
     }
 
     public function create()
@@ -33,7 +35,9 @@ class ProductController extends Controller
         $product = Product::findOrFail($product);
         //return ($product);
         //dd($product);
-        return view('products.show');
+        return view('products.show')->with([
+            'product' => $product,
+        ]);
        
     }
 
